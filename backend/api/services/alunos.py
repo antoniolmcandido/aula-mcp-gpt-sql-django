@@ -2,10 +2,12 @@ from .mysql import conectar
 
 
 class AlunoNaoEncontrado(Exception):
+    # Excecao usada quando uma operacao tenta acessar um aluno inexistente.
     pass
 
 
 def listar_alunos_dados():
+    # Consulta todos os alunos e devolve a resposta em formato simples para a API.
     conexao = conectar()
     cursor = conexao.cursor()
     cursor.execute("SELECT nome, idade FROM alunos ORDER BY nome")
@@ -16,6 +18,7 @@ def listar_alunos_dados():
 
 
 def cadastrar_aluno_dados(nome: str, idade: int):
+    # Insere um novo aluno no banco e devolve os dados cadastrados.
     conexao = conectar()
     cursor = conexao.cursor()
     cursor.execute(
@@ -29,6 +32,7 @@ def cadastrar_aluno_dados(nome: str, idade: int):
 
 
 def atualizar_idade_dados(nome: str, idade: int):
+    # Atualiza a idade de um aluno existente e valida se houve alteracao.
     conexao = conectar()
     cursor = conexao.cursor()
     cursor.execute(
@@ -50,6 +54,7 @@ def atualizar_idade_dados(nome: str, idade: int):
 
 
 def remover_aluno_dados(nome: str):
+    # Remove um aluno pelo nome e aponta erro se nenhum registro for encontrado.
     conexao = conectar()
     cursor = conexao.cursor()
     cursor.execute("DELETE FROM alunos WHERE nome=%s", (nome,))

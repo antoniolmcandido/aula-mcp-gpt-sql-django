@@ -5,6 +5,7 @@ import sys
 
 
 def main():
+    # Executa comandos administrativos do Django usando a configuracao do backend.
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
     try:
         from django.core.management import execute_from_command_line
@@ -16,4 +17,5 @@ def main():
 
 
 if __name__ == "__main__":
+    # Permite executar este arquivo diretamente pelo interpretador Python.
     main()

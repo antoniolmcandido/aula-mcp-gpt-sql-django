@@ -4,6 +4,8 @@ import os
 import sys
 
 
+# Django's command-line utility for administrative tasks.
+# Executa comandos administrativos do Django usando a configuracao do frontend.
 def main():
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
     try:
@@ -15,5 +17,6 @@ def main():
     execute_from_command_line(sys.argv)
 
 
+# Permite executar este arquivo diretamente pelo interpretador Python.
 if __name__ == "__main__":
     main()
