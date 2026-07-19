@@ -9,7 +9,7 @@ from .services.alunos import (AlunoNaoEncontrado, atualizar_idade_dados,
                               remover_aluno_dados)
 from .services.chat import responder_com_mcp
 
-
+# Função auxiliar para analisar o corpo JSON da requisição.
 def _parse_json_body(request):
     if not request.body:
         return {}
@@ -23,12 +23,12 @@ def _parse_json_body(request):
 def _erro(mensagem, status=400):
     return JsonResponse({"error": mensagem}, status=status)
 
-
+# Endpoint para verificar se a API está funcionando.
 @require_http_methods(["GET"])
 def health_check(request):
     return JsonResponse({"status": "ok"})
 
-
+# Endpoint para listar a coleção de alunos ou cadastrar um novo.
 @csrf_exempt
 @require_http_methods(["GET", "POST"])
 def alunos_collection(request):
@@ -47,7 +47,7 @@ def alunos_collection(request):
     except (TypeError, ValueError):
         return _erro("Informe nome e idade válidos.")
 
-
+# Endpoint para atualizar a idade de um aluno ou remover um aluno existente.
 @csrf_exempt
 @require_http_methods(["PATCH", "PUT", "DELETE"])
 def aluno_detail(request, nome):
@@ -65,7 +65,7 @@ def aluno_detail(request, nome):
     except AlunoNaoEncontrado as exc:
         return _erro(str(exc), status=404)
 
-
+# Endpoint para interagir com o chat.
 @csrf_exempt
 @require_http_methods(["POST"])
 def chat_endpoint(request):

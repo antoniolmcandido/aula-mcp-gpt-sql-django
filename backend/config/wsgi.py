@@ -1,8 +1,8 @@
 import os
 
+# Define o modulo de configuracao usado pelo servidor WSGI.
 from django.core.wsgi import get_wsgi_application
 
-# Define o modulo de configuracao usado pelo servidor WSGI.
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
 
 # Ponto de entrada WSGI do backend.
